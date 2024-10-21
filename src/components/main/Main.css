@@ -1,0 +1,125 @@
+.main{
+    min-height: 100vh;
+    padding-bottom: 10px;
+    flex:1;
+    position: relative;
+}
+
+.main .nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+    padding: 20px;
+    color:#585858;
+}
+
+.main .nav img{
+    border-radius: 50%;
+    width: 40px;
+}
+
+.main-container{
+    max-width: 900px;
+    margin: auto;
+}
+
+.main .greet{
+    margin: 30px 0px;
+    font-size: 50px;
+    color: #c4c7c5;
+    font-weight: 500;
+    padding: 20px;
+}
+
+.main .greet span{
+    background: -webkit-linear-gradient(24deg, rgb(29, 120, 224), rgb(228, 57, 57));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.main .cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap:20px;
+    padding:10px;
+}
+
+.main .card{
+    height: 180px;
+    padding: 15px;
+    background-color: #f0f4f9;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.main .card img{
+    position: absolute;
+    width:40px;
+    padding: 10px;
+    bottom: 10px;
+    right: 10px;
+}
+
+.main .card p{
+    color:#585858;
+    font-size: 18px;
+}
+
+.main .card:hover{
+    background-color: #dfe4ea;
+}
+
+.main-bottom{
+    position: absolute;
+    width: 100%;
+    max-width: 900px;
+    padding: 10px;
+    margin:auto;
+    bottom: 0;
+}
+
+.search-box{
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    background-color: #f0f4f9;
+    border-radius:30px;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.search-box input{
+    flex:1;
+    height: 100%;
+    border: none;
+    background:transparent;
+    font-size: 18px;
+    outline: none;
+    padding: 8px;
+}
+.search-box div{
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+
+
+.search-box img{
+    width:40px;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 6px;
+}
+.search-box img:hover{
+    background-color: #dfe4ea;
+}
+
+.main .bottom-info{
+    text-align: center;
+    font-size: 13px;
+    margin: 15px auto;
+    font-weight: 300;
+}
