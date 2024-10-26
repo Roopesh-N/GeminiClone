@@ -1,26 +1,44 @@
 import React, { useState } from 'react'
 import "./SideBar.css";
 import {assets} from '../../assets/assets';
+import { ContextStore } from '../../context';
 
 const SideBar = () => {
   const [Extended, setExtended] = useState(false)
+  const {onSent, PrevPrompts,setShowResult}=ContextStore();
+
+
+  
+  const handleGetRecent=(e)=>{
+    const recentEntryIndex=e.target.closest(".recent-entry")
+    if(recentEntryIndex){
+      const index=recentEntryIndex.dataset.index;
+      const prompt= PrevPrompts[index]
+      onSent(prompt)
+    }
+  }
+
   return (
     <>
     <div className='sidebar'>
         <div className='top'>
             <img className="menu" src={assets.menu_icon} alt='' onClick={()=>setExtended(!Extended)}/>
-            <div className='new-chat'>
+            <div className='new-chat' onClick={()=>setShowResult(false)}>
               <img className="" src={assets.plus_icon} alt=""/>
               {Extended?<p>New Chat</p>:null}
             </div>
             {Extended?
-            <div className='recent'>
+            <div className='recent' onClick={(e)=>handleGetRecent(e)}>
               <p className='recent-title'>Recent</p>
-              <div className='recent-entry'>
-                <img src={assets.message_icon} alt=""/>
-                {Extended?<p>previous search..</p>:null}
+                {PrevPrompts.map((prompt,index)=>{
+                  return (
+                    <div className='recent-entry' key={index} data-index={index}>
+                      <img src={assets.message_icon} alt=""/>
+                      <p>{prompt.slice(0,15).padEnd(18,".")}</p>
+                    </div>
+                  )
+                })}
               </div>
-            </div>
             :null}
 
         </div>
