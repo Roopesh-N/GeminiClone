@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {assets} from '../../assets/assets';
 import "../main/Main.css"
+import { ContextStore } from '../../context';
 
 const Main = () => {
-  return (
+
+    const { PrevPrompts,setInput,setRecentPrompt,RecentPrompt,ShowResult,setPrevPrompts,Input,loading,onSent, resData}=ContextStore();
+    console.log(resData.current)
+    
+        return (
     <div className='main'>
         <div className='nav'>
             <p>Gemini</p>
             <img src={assets.user_icon} alt=""/>
         </div>
         <div className='main-container'>
-            <div className='greet'>
+            {
+                (!ShowResult)
+                ?<>
+                <div className='greet'>
                 <p><span>Hello, Dev.</span></p>
                 <p>How can I help you today?</p>
             </div>
@@ -31,14 +39,35 @@ const Main = () => {
                     <p>Brainstorm team bonding activities for work</p>
                     <img src={assets.message_icon} alt=""/>
                 </div>
-            </div>
+                </div>
+                </>
+                :<div className='result'>
+                    <div className='result-title'>
+                        <img src={assets.user_icon} alt=""/>
+                        <p>{RecentPrompt}</p>
+                    </div>
+                    <div className='result-data'>
+                        <img src={assets.gemini_icon} alt=""/>
+                        {
+                            loading 
+                            ?<div className='loader'>
+                                <hr/>
+                                <hr/>
+                                <hr/>
+                                
+                            </div>
+                            :<p ref={resData}></p>
+                        }
+                    </div>
+                </div>
+            }
             <div className='main-bottom'>
             <div className='search-box'>
-                <input type='text' placeholder='Enter your prompt here'/>
+                <input onChange={(e)=>setInput(e.target.value)} value={Input} type='text' placeholder='Enter your prompt here'/>
                 <div>
                     <img className="" src={assets.gallery_icon}  alt="" />
                     <img className="" src={assets.mic_icon}  alt="" />
-                    <img  className="" src={assets.send_icon}  alt="" />
+                    <img onClick={()=>onSent()} className="" src={assets.send_icon}  alt="" />
                 </div>
             </div>
             <p className='bottom-info'>
@@ -50,6 +79,7 @@ const Main = () => {
 
     </div>
   )
+
 }
 
 export default Main
